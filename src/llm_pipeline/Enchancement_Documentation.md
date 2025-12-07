@@ -30,9 +30,10 @@ The platform operates on using single review to enchance the recipe instead of c
 
 The platform includes a robust fallback mechanism for recipe discovery:
 
-**Primary Strategy**: Scrape recipe URLs from AllRecipes sitemap.
+#### Primary Strategy: Scrape recipe URLs from AllRecipes sitemap.
 
-**Fallback Strategy**: If scraping fails (network issues, website changes, rate limiting), the system automatically falls back to a hardcoded list of five popular recipe URLs that are known to work reliably.
+#### Fallback Strategy: If scraping fails (network issues, website changes, rate limiting), the system automatically falls back to a hardcoded list of five popular recipe URLs that are known to work reliably.
+
 This feels like kind of a **poor assumption** since this will never tell us if our scraping pipeline is failing i.e. if we are actually able to scrape data from the website.
 ---
 
