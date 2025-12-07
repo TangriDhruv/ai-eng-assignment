@@ -9,9 +9,8 @@ A sophisticated system that automatically enhances recipes by analyzing and appl
 3. [Technical Architecture](#technical-architecture)
 4. [Implementation Details](#implementation-details)
 5. [Challenges & Solutions](#challenges--solutions)
-6. [Performance & Scaling](#performance--scaling)
-7. [Future Improvements](#future-improvements)
-8. [Getting Started](#getting-started)
+6. [Future Improvements](#future-improvements)
+7. [Getting Started](#getting-started)
 
 ---
 
@@ -19,37 +18,36 @@ A sophisticated system that automatically enhances recipes by analyzing and appl
 
 ### Single Review Per Recipe Enhancement
 
-The platform operates on a **random review** on the recipe. Updated it to operate on **review with highest rating**
+The platform operates on using single review to enchance the recipe instead of combining multiple reviews.
 - **Quality over Quantity**: Combining modifications from different reviews creates inconsistent results and conflicting changes
 - **Attribution Clarity**: Single-review enhancement maintains clear, traceable attribution back to the source
 - **Recipe Coherence**: A single reviewer's modifications form a cohesive set of improvements that work together
 - **Reduced Complexity**: Eliminates the combinatorial explosion of trying to merge multiple modification sets
 
-**Selection Strategy**: We select the **highest-rated review** with modifications (by star rating) as the source. This heuristic prioritizes community-validated improvements, assuming higher-rated reviews represent more reliable recipe enhancements.
+**Selection Strategy**: We select the **highest-rated review** with modifications (by star rating) as the source. If two or more reviews have the same rating we select the one with most detailed review by length of words in that review. This heuristic prioritizes community-validated improvements, assuming higher-rated reviews represent more reliable recipe enhancements.
 
 ### Recipe Data Sourcing
 
 The platform includes a robust fallback mechanism for recipe discovery:
 
-**Primary Strategy**: Scrape recipe URLs from AllRecipes sitemap in real-time.
+**Primary Strategy**: Scrape recipe URLs from AllRecipes sitemap.
 
 **Fallback Strategy**: If scraping fails (network issues, website changes, rate limiting), the system automatically falls back to a hardcoded list of five popular recipe URLs that are known to work reliably.
 
-The hardcoded fallback serves as a safety net rather than a limitation, allowing development and testing to proceed uninterrupted while the production scraper is refined.
-
+This feels like kind of a **poor assumption** since this will never tell us if our scraping pipeline is failing i.e. if we are actually able to scrape data from the website.
 ---
 
-## Problem Analysis & Solution
+## Problem Analysis & Solution Approach
 
 ### Step 1: Code Walkthrough 
 
-To understand the system architecture, I traced the enhancement pipeline with a real example: the "Best Chocolate Chip Cookies" recipe.
+To understand the system architecture, I traced the pipeline with a real example: the "Best Chocolate Chip Cookies" recipe.
 
 **Initial State**: A recipe with 11 reviews, 5 of which contained user modifications. 
 
 **Processing Flow**:
 
-The system first loads the recipe JSON and identifies all reviews flagged with modifications. From these candidates, it selects the highest-rated review using a simple algorithm: sort by star rating (descending), with text length as a tiebreaker for cases where multiple reviews have identical ratings.
+The system first loads the recipe JSON and identifies all reviews flagged with modifications. From these candidates, it used to selects the random review that I upgraded to use a simple algorithm: sort by star rating (descending), with text length as a tiebreaker for cases where multiple reviews have identical ratings.
 
 Next, the selected review text is sent to the LLM (along with recipe context) to extract structured modifications. Previously, this step would return only a single modification. The system would then apply this modification to the recipe, validate the changes, and generate an enhanced recipe record.
 
@@ -158,7 +156,7 @@ The scraper had a hard-coded limit of 5 recipes for testing purposes. This is fi
 **Consideration**: How do we source recipes at scale while being respectful of the website and avoiding unnecessary re-processing?
 
 **Root Cause**:
-The limit was intentionally set for development/testing when processing speed and API costs are primary concerns.
+The limit maybe intentionally set for development/testing when processing speed and API costs are primary concerns.
 
 **Two Strategies Identified**:
 
@@ -239,7 +237,6 @@ GPT-3.5-Turbo excels at instruction-following with simple prompts but struggles 
 **Decision Rationale**:
 While GPT-4o-mini costs approximately 3x more per call than GPT-3.5-Turbo, it provides:
 - 92% vs 45% success rate on extraction
-- 2.5x more modifications per call vs 0.8
 - Reliable JSON parsing for complex structures
 - Better handling of edge cases
 
@@ -257,14 +254,6 @@ The upgrade was justified not as a technology choice but as a business decision:
 **Context**:
 The original 1000-token limit was designed for single-modification extraction and proved insufficient for multi-modification scenarios.
 
-**Analysis**:
-Token distribution for typical multi-modification calls:
-- Context and examples: approximately 600 tokens
-- Recipe metadata: approximately 200 tokens
-- Review text: approximately 150 tokens
-- JSON output: approximately 400 tokens
-- **Total: approximately 1350 tokens**
-
 With a 1000-token limit, extraction would be truncated, losing modifications and producing incomplete responses.
 
 **Decision Rationale**:
@@ -279,7 +268,7 @@ The increased cost per call is minimal compared to the risk of truncated respons
 
 ## Implementation Details
 
-### Few-Shot Prompting Strategy
+### Updated to Few-Shot Prompting Strategy
 
 Rather than instructing the LLM with abstract rules, we teach it through examples. The prompt includes several real review scenarios, each showing:
 - Actual user review text
@@ -295,7 +284,7 @@ This example-based approach works because:
 
 The few-shot examples are carefully selected to cover diverse modification types and recipe complexities, ensuring the LLM learns a generalizable pattern.
 
-### Validation Safety Architecture
+### Applied already existing Validation Safety Architecture
 
 The system implements three-tier validation:
 
@@ -359,8 +348,6 @@ Upgraded to GPT-4o-mini, which was specifically designed for sophisticated in-co
 - Produces well-formed JSON consistently
 - Handles edge cases better
 
-**Key Learning**:
-Model selection isn't always about picking the "strongest" model—it's about choosing the right tool for the specific task. Few-shot prompting is a strength of more advanced models like GPT-4o-mini, not a weakness that can be overcome with simpler models through better prompt engineering alone.
 
 ---
 
@@ -375,8 +362,6 @@ Review filtering logic (`has_modification` checks) appeared in multiple location
 
 This redundancy created maintenance challenges: if the filtering logic needed to change, multiple places needed updates, increasing the risk of inconsistency.
 
-**Root Cause**:
-The code evolved organically as new features were added. Rather than refactoring to a single source of truth, defensive copies of the check were added at each new layer.
 
 **Resolution**:
 - Identified the most appropriate single location (at pipeline entry point)
@@ -417,3 +402,10 @@ Implementing async concurrent processing with semaphore-based rate limiting allo
 - Scales easily: increase max_concurrent for faster processing
 
 ---
+
+## Files updated
+- enhanced_recipe_generator
+- pipeline.py
+- prompts.py
+- recipe_modifier
+- tweak_extractor
