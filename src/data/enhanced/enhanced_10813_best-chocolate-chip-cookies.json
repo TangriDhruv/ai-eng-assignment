@@ -7,57 +7,109 @@
     "1 cup white sugar",
     "1 cup packed brown sugar",
     "2 eggs",
-    "1 additional egg yolk",
-    "2 teaspoons vanilla extract",
+    "1 teaspoon vanilla extract, 1 teaspoon almond extract",
     "1 teaspoon baking soda",
     "2 teaspoons hot water",
     "0.5 teaspoon salt",
     "3 cups all-purpose flour",
     "2 cups semisweet chocolate chips",
-    "1 cup chopped walnuts"
+    "1 cup chopped chocolate covered almonds"
   ],
   "instructions": [
     "Gather your ingredients, making sure your butter is softened, and your eggs are room temperature.",
-    "Preheat the oven to 350 degrees F (175 degrees C). Beat butter, white sugar, and brown sugar with an electric mixer in a large bowl until smooth.",
+    "Preheat the oven to 350 degrees F (175 degrees C). Beat butter, white sugar, and brown sugar in a large bowl with an electric mixer until smooth and creamy.",
     "Beat in eggs, one at a time, then stir in vanilla.",
-    "Dissolve baking soda in hot water. Add to batter along with salt.",
-    "Stir in flour, chocolate chips, and walnuts.",
-    "Drop spoonfuls of dough 2 inches apart onto ungreased baking sheets.",
-    "Bake in the preheated oven until edges are nicely browned, about 10 minutes.",
+    "Dissolve baking soda in hot water; add to batter along with salt and mix until combined.",
+    "Stir in flour, chocolate chips, and walnuts until a soft dough forms.",
+    "Drop medium-sized rounded spoonfuls of cookie dough onto ungreased baking sheets.",
+    "Bake in the preheated oven until edges are lightly browned, about 10 minutes.",
     "Cool on the baking sheets briefly before removing to a wire rack to cool completely.",
     "Store in an airtight container or serve immediately and enjoy!"
   ],
   "modifications_applied": [
     {
       "source_review": {
-        "text": "I used an ice cream scoop, that made 16 big cookies. I did add an additional egg yolk to help keep the cookie chewy.They turned out fantastic.",
+        "text": "I definitely will make this one again, although I made a couple adjustments....I guess my chocolate chips went \"cupboardy\" as I say, since I haven't baked in a while, so I had to toss them, and I didn't have walnuts on hand....however, I had chocolate covered almonds. Chopped them in half (the larger ones chopped in 3's). Also instead of 2 tsp vanilla extract I did 1 vanilla 1 almond. They turned out perfect and so delicious! I made medium sized cookies (not small, not huge) and got 26 out of this recipe. They were so good I think I will do chocolate covered almonds, and vanilla & almond extracts next time too.",
         "reviewer": null,
         "rating": 5
       },
-      "modification_type": "addition",
-      "reasoning": "Adding an additional egg yolk helps keep the cookies chewy, improving their texture.",
+      "modification_type": "removal",
+      "reasoning": "Omitting walnuts due to lack of availability",
+      "changes_made": [
+        {
+          "type": "ingredient",
+          "from_text": "1 cup chopped walnuts",
+          "to_text": "",
+          "operation": "remove"
+        }
+      ]
+    },
+    {
+      "source_review": {
+        "text": "I definitely will make this one again, although I made a couple adjustments....I guess my chocolate chips went \"cupboardy\" as I say, since I haven't baked in a while, so I had to toss them, and I didn't have walnuts on hand....however, I had chocolate covered almonds. Chopped them in half (the larger ones chopped in 3's). Also instead of 2 tsp vanilla extract I did 1 vanilla 1 almond. They turned out perfect and so delicious! I made medium sized cookies (not small, not huge) and got 26 out of this recipe. They were so good I think I will do chocolate covered almonds, and vanilla & almond extracts next time too.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "ingredient_substitution",
+      "reasoning": "Replaced walnuts with chocolate covered almonds for a different flavor and texture",
       "changes_made": [
         {
           "type": "ingredient",
           "from_text": "",
-          "to_text": "1 additional egg yolk",
+          "to_text": "1 cup chopped chocolate covered almonds",
           "operation": "add"
+        }
+      ]
+    },
+    {
+      "source_review": {
+        "text": "I definitely will make this one again, although I made a couple adjustments....I guess my chocolate chips went \"cupboardy\" as I say, since I haven't baked in a while, so I had to toss them, and I didn't have walnuts on hand....however, I had chocolate covered almonds. Chopped them in half (the larger ones chopped in 3's). Also instead of 2 tsp vanilla extract I did 1 vanilla 1 almond. They turned out perfect and so delicious! I made medium sized cookies (not small, not huge) and got 26 out of this recipe. They were so good I think I will do chocolate covered almonds, and vanilla & almond extracts next time too.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "ingredient_substitution",
+      "reasoning": "Used a mix of vanilla and almond extracts for enhanced flavor",
+      "changes_made": [
+        {
+          "type": "ingredient",
+          "from_text": "2 teaspoons vanilla extract",
+          "to_text": "1 teaspoon vanilla extract, 1 teaspoon almond extract",
+          "operation": "replace"
+        }
+      ]
+    },
+    {
+      "source_review": {
+        "text": "I definitely will make this one again, although I made a couple adjustments....I guess my chocolate chips went \"cupboardy\" as I say, since I haven't baked in a while, so I had to toss them, and I didn't have walnuts on hand....however, I had chocolate covered almonds. Chopped them in half (the larger ones chopped in 3's). Also instead of 2 tsp vanilla extract I did 1 vanilla 1 almond. They turned out perfect and so delicious! I made medium sized cookies (not small, not huge) and got 26 out of this recipe. They were so good I think I will do chocolate covered almonds, and vanilla & almond extracts next time too.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "technique_change",
+      "reasoning": "Adjusted cookie size to achieve a medium size, resulting in 26 cookies",
+      "changes_made": [
+        {
+          "type": "instruction",
+          "from_text": "Drop rounded spoonfuls of cookie dough 2 inches apart onto ungreased baking sheets.",
+          "to_text": "Drop medium-sized rounded spoonfuls of cookie dough onto ungreased baking sheets.",
+          "operation": "replace"
         }
       ]
     }
   ],
   "enhancement_summary": {
-    "total_changes": 1,
+    "total_changes": 4,
     "change_types": [
-      "addition"
+      "technique_change",
+      "removal",
+      "ingredient_substitution"
     ],
-    "expected_impact": "Adding an additional egg yolk helps keep the cookies chewy, improving their texture."
+    "expected_impact": "Omitting walnuts due to lack of availability; Replaced walnuts with chocolate covered almonds for a different flavor and texture; Used a mix of vanilla and almond extracts for enhanced flavor (and 1 more improvements)"
   },
   "description": "This classic chocolate chip cookie recipe makes deliciously buttery cookies with crisp edges, chewy middles, and gooey chocolate chips in every bite.",
   "servings": "48",
   "prep_time": null,
   "cook_time": null,
   "total_time": null,
-  "created_at": "2025-09-25T01:38:11.806705",
+  "created_at": "2025-12-07T00:54:52.206044",
   "pipeline_version": "1.0.0"
 }

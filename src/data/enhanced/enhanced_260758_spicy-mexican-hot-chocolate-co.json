@@ -1,0 +1,150 @@
+{
+  "recipe_id": "260758_enhanced",
+  "original_recipe_id": "260758",
+  "title": "Spicy Mexican Hot Chocolate Cookies (Community Enhanced)",
+  "ingredients": [
+    "0.875 cups white sugar, divided and 0.875 cups dark brown sugar",
+    "0.5 cup Crisco and 0.5 cup butter, softened",
+    "1 teaspoon vanilla extract",
+    "2 large eggs",
+    "2 teaspoons cream of tartar",
+    "1 teaspoon ground cinnamon and 1/4 cup sugar",
+    "1 teaspoon baking soda",
+    "0.5 cup unsweetened cocoa powder",
+    "1 teaspoon ground cinnamon, divided",
+    "0.5 teaspoon cayenne pepper",
+    "2.25 cups all-purpose flour",
+    "0.5 cup peanut butter chips and 0.5 cup semisweet chocolate chips"
+  ],
+  "instructions": [
+    "Preheat the oven to 375 degrees F (190 degrees C). Line 2 baking sheets with parchment paper.",
+    "Beat together 1 1/2 cups sugar, butter, vanilla, and salt in a large bowl with an electric mixer until light and fluffy. Beat in eggs one at a time, mixing well after each addition. Mix in cream of tartar and baking soda. Beat in cocoa powder, 1/2 teaspoon cinnamon, and cayenne powder. Beat in flour. Stir chocolate chips into dough until incorporated.",
+    "Mix together remaining 1/4 cup sugar and 1/2 teaspoon cinnamon in a small bowl.",
+    "Roll heaping tablespoons of dough into balls. Roll balls in sugar-cinnamon mixture and place 2 inches apart onto the prepared baking sheets.",
+    "Bake in the preheated oven until centers are set and edges are slightly cracked, about 10 minutes. Cool on the baking sheets for about 5 minutes before removing to a wire rack to cool completely."
+  ],
+  "modifications_applied": [
+    {
+      "source_review": {
+        "text": "First time making- I modified. For sugar I did 1/2 white sugar 1/2 dark brown sugar (was out of light brown) and for butter I did 1/2 Crisco 1/2 butter. For the chips I did 1/2 peanut butter 1/2 semi-sweet chocolate. I also didn't roll the cookies in the cinnamon and sugar mixture- I put all cinnamon and sugar in the batter. I realized I left out the salt once all was mixed together so instead of adding it to the batter I sprinkled crushed sea salt on top of the cookies before baking. I like cookies a little bigger (the approx. size of my palm once baked) so baking time usually takes a little longer- I baked 'em 15 min instead of 10. They cooled firm but chewy with chips perfectly gooey. My husband loves them.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "ingredient_substitution",
+      "reasoning": "Substituting dark brown sugar for light brown sugar due to availability, maintaining sweetness and flavor.",
+      "changes_made": [
+        {
+          "type": "ingredient",
+          "from_text": "1.75 cups white sugar, divided",
+          "to_text": "0.875 cups white sugar, divided and 0.875 cups dark brown sugar",
+          "operation": "replace"
+        }
+      ]
+    },
+    {
+      "source_review": {
+        "text": "First time making- I modified. For sugar I did 1/2 white sugar 1/2 dark brown sugar (was out of light brown) and for butter I did 1/2 Crisco 1/2 butter. For the chips I did 1/2 peanut butter 1/2 semi-sweet chocolate. I also didn't roll the cookies in the cinnamon and sugar mixture- I put all cinnamon and sugar in the batter. I realized I left out the salt once all was mixed together so instead of adding it to the batter I sprinkled crushed sea salt on top of the cookies before baking. I like cookies a little bigger (the approx. size of my palm once baked) so baking time usually takes a little longer- I baked 'em 15 min instead of 10. They cooled firm but chewy with chips perfectly gooey. My husband loves them.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "ingredient_substitution",
+      "reasoning": "Using a mix of Crisco and butter for a different texture and flavor.",
+      "changes_made": [
+        {
+          "type": "ingredient",
+          "from_text": "1 cup butter, softened",
+          "to_text": "0.5 cup Crisco and 0.5 cup butter, softened",
+          "operation": "replace"
+        }
+      ]
+    },
+    {
+      "source_review": {
+        "text": "First time making- I modified. For sugar I did 1/2 white sugar 1/2 dark brown sugar (was out of light brown) and for butter I did 1/2 Crisco 1/2 butter. For the chips I did 1/2 peanut butter 1/2 semi-sweet chocolate. I also didn't roll the cookies in the cinnamon and sugar mixture- I put all cinnamon and sugar in the batter. I realized I left out the salt once all was mixed together so instead of adding it to the batter I sprinkled crushed sea salt on top of the cookies before baking. I like cookies a little bigger (the approx. size of my palm once baked) so baking time usually takes a little longer- I baked 'em 15 min instead of 10. They cooled firm but chewy with chips perfectly gooey. My husband loves them.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "ingredient_substitution",
+      "reasoning": "Replacing semisweet chocolate chips with peanut butter chips for a different flavor profile.",
+      "changes_made": [
+        {
+          "type": "ingredient",
+          "from_text": "1 cup semisweet chocolate chips",
+          "to_text": "0.5 cup peanut butter chips and 0.5 cup semisweet chocolate chips",
+          "operation": "replace"
+        }
+      ]
+    },
+    {
+      "source_review": {
+        "text": "First time making- I modified. For sugar I did 1/2 white sugar 1/2 dark brown sugar (was out of light brown) and for butter I did 1/2 Crisco 1/2 butter. For the chips I did 1/2 peanut butter 1/2 semi-sweet chocolate. I also didn't roll the cookies in the cinnamon and sugar mixture- I put all cinnamon and sugar in the batter. I realized I left out the salt once all was mixed together so instead of adding it to the batter I sprinkled crushed sea salt on top of the cookies before baking. I like cookies a little bigger (the approx. size of my palm once baked) so baking time usually takes a little longer- I baked 'em 15 min instead of 10. They cooled firm but chewy with chips perfectly gooey. My husband loves them.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "removal",
+      "reasoning": "Omitting the rolling in cinnamon and sugar mixture to incorporate flavors directly into the batter.",
+      "changes_made": []
+    },
+    {
+      "source_review": {
+        "text": "First time making- I modified. For sugar I did 1/2 white sugar 1/2 dark brown sugar (was out of light brown) and for butter I did 1/2 Crisco 1/2 butter. For the chips I did 1/2 peanut butter 1/2 semi-sweet chocolate. I also didn't roll the cookies in the cinnamon and sugar mixture- I put all cinnamon and sugar in the batter. I realized I left out the salt once all was mixed together so instead of adding it to the batter I sprinkled crushed sea salt on top of the cookies before baking. I like cookies a little bigger (the approx. size of my palm once baked) so baking time usually takes a little longer- I baked 'em 15 min instead of 10. They cooled firm but chewy with chips perfectly gooey. My husband loves them.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "addition",
+      "reasoning": "Incorporating cinnamon and sugar directly into the batter for consistent flavor throughout the cookies.",
+      "changes_made": [
+        {
+          "type": "ingredient",
+          "from_text": "",
+          "to_text": "1 teaspoon ground cinnamon and 1/4 cup sugar",
+          "operation": "add"
+        }
+      ]
+    },
+    {
+      "source_review": {
+        "text": "First time making- I modified. For sugar I did 1/2 white sugar 1/2 dark brown sugar (was out of light brown) and for butter I did 1/2 Crisco 1/2 butter. For the chips I did 1/2 peanut butter 1/2 semi-sweet chocolate. I also didn't roll the cookies in the cinnamon and sugar mixture- I put all cinnamon and sugar in the batter. I realized I left out the salt once all was mixed together so instead of adding it to the batter I sprinkled crushed sea salt on top of the cookies before baking. I like cookies a little bigger (the approx. size of my palm once baked) so baking time usually takes a little longer- I baked 'em 15 min instead of 10. They cooled firm but chewy with chips perfectly gooey. My husband loves them.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "removal",
+      "reasoning": "Omitting the addition of salt to the batter and instead sprinkling it on top for a different flavor experience.",
+      "changes_made": [
+        {
+          "type": "ingredient",
+          "from_text": "0.5 teaspoon sea salt",
+          "to_text": "",
+          "operation": "remove"
+        }
+      ]
+    },
+    {
+      "source_review": {
+        "text": "First time making- I modified. For sugar I did 1/2 white sugar 1/2 dark brown sugar (was out of light brown) and for butter I did 1/2 Crisco 1/2 butter. For the chips I did 1/2 peanut butter 1/2 semi-sweet chocolate. I also didn't roll the cookies in the cinnamon and sugar mixture- I put all cinnamon and sugar in the batter. I realized I left out the salt once all was mixed together so instead of adding it to the batter I sprinkled crushed sea salt on top of the cookies before baking. I like cookies a little bigger (the approx. size of my palm once baked) so baking time usually takes a little longer- I baked 'em 15 min instead of 10. They cooled firm but chewy with chips perfectly gooey. My husband loves them.",
+        "reviewer": null,
+        "rating": 5
+      },
+      "modification_type": "technique_change",
+      "reasoning": "Baking for a longer time to accommodate larger cookie size, resulting in a firmer yet chewy texture.",
+      "changes_made": []
+    }
+  ],
+  "enhancement_summary": {
+    "total_changes": 5,
+    "change_types": [
+      "technique_change",
+      "removal",
+      "ingredient_substitution",
+      "addition"
+    ],
+    "expected_impact": "Substituting dark brown sugar for light brown sugar due to availability, maintaining sweetness and flavor.; Using a mix of Crisco and butter for a different texture and flavor.; Replacing semisweet chocolate chips with peanut butter chips for a different flavor profile. (and 4 more improvements)"
+  },
+  "description": "These spicy chocolate cookies were inspired by Mexican hot chocolate that combines sweet dark chocolate, cinnamon, vanilla, and spicy cayenne pepper.",
+  "servings": "24",
+  "prep_time": null,
+  "cook_time": null,
+  "total_time": null,
+  "created_at": "2025-12-07T00:55:10.207231",
+  "pipeline_version": "1.0.0"
+}
