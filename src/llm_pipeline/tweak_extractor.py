@@ -84,7 +84,9 @@ class TweakExtractor:
                 # Parse the JSON response
                 raw_data = json.loads(raw_output)
                 modifications_data = []
+                
                 modifications_data = raw_data["modifications"]
+                
                 
                 
                 # DEBUG: Check if array or single object
@@ -176,9 +178,14 @@ class TweakExtractor:
             logger.warning("No reviews with modifications found")
             return None, None
 
+        
+        selected_review = max(
+            modification_reviews,
+            key=lambda r: (r.rating or 0, len(r.text))
+        )
         # Set seed for reproducibility
-        random.seed(0)
-        selected_review = random.choice(modification_reviews)
+        # random.seed(0)
+        # selected_review = random.choice(modification_reviews)
         logger.info(f"Selected review: {selected_review.text[:100]}...")
 
         modifications = self.extract_modifications(selected_review, recipe)
