@@ -33,7 +33,6 @@ The platform includes a robust fallback mechanism for recipe discovery:
 **Primary Strategy**: Scrape recipe URLs from AllRecipes sitemap.
 
 **Fallback Strategy**: If scraping fails (network issues, website changes, rate limiting), the system automatically falls back to a hardcoded list of five popular recipe URLs that are known to work reliably.
-
 This feels like kind of a **poor assumption** since this will never tell us if our scraping pipeline is failing i.e. if we are actually able to scrape data from the website.
 ---
 
@@ -204,23 +203,11 @@ The platform consists of five main components working together in sequence:
 
 **Enhanced Recipe Generator**: Combines the modified recipe with complete attribution information, creating a new record that shows exactly which review provided which modifications.
 
-### Data Flow
-
-Raw recipe data flows through the system in a pipeline:
-1. Scraper retrieves recipes and reviews
-2. Parser identifies modification candidates
-3. Highest-rated review is selected
-4. LLM extracts multiple modifications from review
-5. Each modification is validated
-6. Valid modifications are applied in sequence
-7. Enhanced recipe is generated with full attribution
-8. Results are saved to disk for distribution
-
 ---
 
-## Technical Architecture
 
-### Key Technical Decisions
+
+## Key Technical Decisions
 
 #### Model Selection: GPT-3.5-Turbo → GPT-4o-mini
 
@@ -307,24 +294,6 @@ The system implements three-tier validation:
 - Supports detailed attribution
 
 This multi-tier approach ensures safety without over-rejecting valid modifications.
-
-### Modification Type Categories
-
-The system recognizes five distinct modification types:
-
-**Ingredient Substitution**: Replacing one ingredient with another (e.g., "use honey instead of sugar").
-
-**Quantity Adjustment**: Changing the amount of existing ingredients (e.g., "increase salt from 1/2 to 1 teaspoon").
-
-**Technique Change**: Altering cooking methods, temperatures, or times (e.g., "bake at 375 instead of 350").
-
-**Addition**: Adding new ingredients or steps (e.g., "add a teaspoon of vanilla extract").
-
-**Removal**: Eliminating ingredients or steps (e.g., "omit the nuts").
-
-Each type is handled appropriately by the system with specific validation and application logic.
-
----
 
 ## Challenges & Solutions
 
