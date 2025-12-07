@@ -61,7 +61,7 @@ class RecipeModifier:
             return best_match, best_index, best_score
         else:
             return None, None, best_score
-
+    
     def apply_edit(
         self,
         edit: ModificationEdit,
@@ -69,26 +69,47 @@ class RecipeModifier:
     ) -> Tuple[List[str], List[ChangeRecord]]:
         """
         Apply a single edit to a recipe content list.
-
-        Args:
-            edit: The edit operation to apply
-            recipe_content: List of ingredients or instructions
-
-        Returns:
-            Tuple of (modified_content, change_records)
+        (MODIFIED to prioritize substring containment for 'replace' and 'remove' operations)
         """
         modified_content = copy.deepcopy(recipe_content)
         change_records = []
+        match, index, score = None, None, 0.0
 
         logger.debug(f"Applying {edit.operation} edit: find='{edit.find}'")
 
-        if edit.operation == "replace":
-            # Find and replace text
+        # --- Search Logic: Prioritize Substring Containment ---
+        
+        if edit.operation in ["replace", "remove"]:
+            # Strategy A: Use containment search for 'replace' and 'remove'
+            found_index = None
+            # Normalize search key for robust, case-insensitive containment check
+            search_key = edit.find.lower().strip().strip(".,;") 
+            
+            for i, candidate in enumerate(modified_content):
+                if search_key in candidate.lower():
+                    found_index = i
+                    match = candidate
+                    index = i
+                    score = 1.0 # Indicate a perfect containment match
+                    break
+            
+            if index is None:
+                # Fallback to the original fuzzy matching if containment fails.
+                match, index, score = self.find_best_match(edit.find, modified_content)
+        
+        elif edit.operation == "add_after":
+            # Strategy B: Use original fuzzy match only for 'add_after'
             match, index, score = self.find_best_match(edit.find, modified_content)
-
+            
+        # --- Apply the Edit ---
+            
+        if edit.operation == "replace":
             if match and index is not None:
                 original_text = modified_content[index]
+                
+                # Perform the replacement using the exact find/replace strings from the LLM output
                 new_text = original_text.replace(edit.find, edit.replace or "")
+
                 modified_content[index] = new_text
 
                 change_records.append(ChangeRecord(
@@ -104,8 +125,6 @@ class RecipeModifier:
 
         elif edit.operation == "add_after":
             # Add new content after finding target
-            match, index, score = self.find_best_match(edit.find, modified_content)
-
             if match and index is not None and edit.add:
                 modified_content.insert(index + 1, edit.add)
 
@@ -122,8 +141,6 @@ class RecipeModifier:
 
         elif edit.operation == "remove":
             # Remove matching content
-            match, index, score = self.find_best_match(edit.find, modified_content)
-
             if match and index is not None:
                 removed_text = modified_content.pop(index)
 
@@ -139,6 +156,84 @@ class RecipeModifier:
                 logger.warning(f"Could not find '{edit.find}' to remove")
 
         return modified_content, change_records
+
+    # def apply_edit(
+    #     self,
+    #     edit: ModificationEdit,
+    #     recipe_content: List[str]
+    # ) -> Tuple[List[str], List[ChangeRecord]]:
+    #     """
+    #     Apply a single edit to a recipe content list.
+
+    #     Args:
+    #         edit: The edit operation to apply
+    #         recipe_content: List of ingredients or instructions
+
+    #     Returns:
+    #         Tuple of (modified_content, change_records)
+    #     """
+    #     modified_content = copy.deepcopy(recipe_content)
+    #     change_records = []
+
+    #     logger.debug(f"Applying {edit.operation} edit: find='{edit.find}'")
+
+    #     if edit.operation == "replace":
+    #         # Find and replace text
+    #         match, index, score = self.find_best_match(edit.find, modified_content)
+
+    #         if match and index is not None:
+    #             original_text = modified_content[index]
+    #             new_text = original_text.replace(edit.find, edit.replace or "")
+    #             modified_content[index] = new_text
+
+    #             change_records.append(ChangeRecord(
+    #                 type="ingredient" if edit.target == "ingredients" else "instruction",
+    #                 from_text=original_text,
+    #                 to_text=new_text,
+    #                 operation="replace"
+    #             ))
+
+    #             logger.info(f"Replaced '{edit.find}' with '{edit.replace}' (similarity: {score:.2f})")
+    #         else:
+    #             logger.warning(f"Could not find '{edit.find}' in {edit.target} (best similarity: {score:.2f})")
+
+    #     elif edit.operation == "add_after":
+    #         # Add new content after finding target
+    #         match, index, score = self.find_best_match(edit.find, modified_content)
+
+    #         if match and index is not None and edit.add:
+    #             modified_content.insert(index + 1, edit.add)
+
+    #             change_records.append(ChangeRecord(
+    #                 type="ingredient" if edit.target == "ingredients" else "instruction",
+    #                 from_text="",
+    #                 to_text=edit.add,
+    #                 operation="add"
+    #             ))
+
+    #             logger.info(f"Added '{edit.add}' after '{edit.find}' (similarity: {score:.2f})")
+    #         else:
+    #             logger.warning(f"Could not find target '{edit.find}' for addition")
+
+    #     elif edit.operation == "remove":
+    #         # Remove matching content
+    #         match, index, score = self.find_best_match(edit.find, modified_content)
+
+    #         if match and index is not None:
+    #             removed_text = modified_content.pop(index)
+
+    #             change_records.append(ChangeRecord(
+    #                 type="ingredient" if edit.target == "ingredients" else "instruction",
+    #                 from_text=removed_text,
+    #                 to_text="",
+    #                 operation="remove"
+    #             ))
+
+    #             logger.info(f"Removed '{edit.find}' (similarity: {score:.2f})")
+    #         else:
+    #             logger.warning(f"Could not find '{edit.find}' to remove")
+
+    #     return modified_content, change_records
 
     def apply_modification(
         self,

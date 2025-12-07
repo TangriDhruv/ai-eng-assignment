@@ -117,7 +117,7 @@ class EnhancedRecipeGenerator:
         change_records: List[ChangeRecord],
     ) -> EnhancedRecipe:
         """
-        Generate a complete enhanced recipe with attribution.
+        Generate a complete enhanced recipe with attribution (single modification).
 
         Args:
             original_recipe: Original unmodified recipe
@@ -136,6 +136,75 @@ class EnhancedRecipeGenerator:
             modification, source_review, change_records
         )
         modifications_applied = [modification_applied]
+
+        # Calculate enhancement summary
+        enhancement_summary = self.calculate_enhancement_summary(modifications_applied)
+
+        # Generate enhanced recipe ID and title
+        enhanced_recipe_id = f"{original_recipe.recipe_id}_enhanced"
+        enhanced_title = f"{original_recipe.title} (Community Enhanced)"
+
+        # Create the enhanced recipe
+        enhanced_recipe = EnhancedRecipe(
+            recipe_id=enhanced_recipe_id,
+            original_recipe_id=original_recipe.recipe_id,
+            title=enhanced_title,
+            ingredients=modified_recipe.ingredients,
+            instructions=modified_recipe.instructions,
+            modifications_applied=modifications_applied,
+            enhancement_summary=enhancement_summary,
+            description=original_recipe.description,
+            servings=original_recipe.servings,
+            prep_time=getattr(original_recipe, "prep_time", None),
+            cook_time=getattr(original_recipe, "cook_time", None),
+            total_time=getattr(original_recipe, "total_time", None),
+            created_at=datetime.now().isoformat(),
+            pipeline_version=self.pipeline_version,
+        )
+
+        logger.info(
+            f"Generated enhanced recipe with {enhancement_summary.total_changes} changes "
+            f"from {len(modifications_applied)} modifications"
+        )
+
+        return enhanced_recipe
+
+    def generate_enhanced_recipe_batch(
+        self,
+        original_recipe: Recipe,
+        modified_recipe: Recipe,
+        modifications: List[ModificationObject],
+        source_review: Review,
+        all_change_records: List[List[ChangeRecord]],
+    ) -> EnhancedRecipe:
+        """
+        Generate a complete enhanced recipe with attribution (multiple modifications).
+
+        Args:
+            original_recipe: Original unmodified recipe
+            modified_recipe: Recipe with all modifications applied
+            modifications: List of modifications that were applied
+            source_review: Review that suggested all modifications
+            all_change_records: List of change records for each modification
+
+        Returns:
+            Complete EnhancedRecipe with attribution for all modifications
+        """
+        logger.info(f"Generating enhanced recipe for: {original_recipe.title}")
+        logger.info(f"Processing {len(modifications)} modifications")
+
+        # Create modification applied records for all modifications
+        modifications_applied = []
+        for i, (modification, change_records) in enumerate(
+            zip(modifications, all_change_records), 1
+        ):
+            logger.info(
+                f"  Creating attribution for modification {i}: {modification.modification_type}"
+            )
+            modification_applied = self.create_modification_applied(
+                modification, source_review, change_records
+            )
+            modifications_applied.append(modification_applied)
 
         # Calculate enhancement summary
         enhancement_summary = self.calculate_enhancement_summary(modifications_applied)
