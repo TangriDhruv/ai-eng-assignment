@@ -172,11 +172,9 @@ class TweakExtractor:
         import random
 
         # Filter to reviews with modifications
-        modification_reviews = [r for r in reviews if r.has_modification]
+        modification_reviews = [r for r in reviews]
 
-        if not modification_reviews:
-            logger.warning("No reviews with modifications found")
-            return None, None
+        
 
         
         selected_review = max(
